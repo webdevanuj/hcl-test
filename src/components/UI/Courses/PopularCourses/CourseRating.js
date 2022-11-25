@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { Rating } from 'react-simple-star-rating';
+import { getLocalStorage, setLocalStorage } from '../utils';
 
 export default function CourseRating (props) {
 
-  const ratingDefault = props.rating;
+  const { id, ratingDefault, votesDefault } = props;
+
   const [rating, setRating] = useState(ratingDefault);
 
   const handleRating = (rate) => {
-    const lastRating = localStorage.getItem(props.id) ? localStorage.getItem(props.id) : props.rating;
+    let lastRating = getLocalStorage(id) ? JSON.parse(getLocalStorage(id)).rating : ratingDefault;
+    let votes = getLocalStorage(id) ? JSON.parse(getLocalStorage(id)).votes : votesDefault;
 
-    const courseRating = parseInt(lastRating) + parseInt(rate);
-    localStorage.setItem(props.id, courseRating)
+    const courseRating = (parseInt(lastRating * votes) + parseInt(rate)) / (votes + 1);
 
-    const courseCurrRating = parseInt(courseRating) / parseInt(props.votes);
-    console.log(courseCurrRating)
-    setRating(courseCurrRating)
+    const ratingData = JSON.stringify({rating: courseRating, votes: votes + 1});
+
+    props.handleVoting(id,votes+1)
+    setLocalStorage(id,ratingData );
+
+    setRating(courseRating)
   }
 
   return (
+    <>
       <Rating
         onClick={handleRating}
         initialValue={rating}
@@ -28,5 +34,6 @@ export default function CourseRating (props) {
         fillColor='orange'
         emptyColor='#ddd'
       />
+</>
   )
 };

@@ -66,3 +66,7 @@
     min-width: 120px;
     font-size: 1.125rem;
 }
+.courseCard .card-footer .btn:first-child:active {
+    background-color: #ff8726;
+    border-color: #ff811c;
+}

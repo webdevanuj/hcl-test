@@ -8,7 +8,7 @@ export const MockData = {
         courseVideos: "30 Videos",
         enrolledStudent: " 500+ Students",
         rating: 4,
-        votes: "80 Votes"
+        votes: 8
     },
     {
         courseId: 2,
@@ -19,7 +19,7 @@ export const MockData = {
         courseVideos: "60 Videos",
         enrolledStudent: " 200+ Students",
         rating: 3,
-        votes: "50 Votes"
+        votes: 5
     },
     {
         courseId: 3,
@@ -30,6 +30,6 @@ export const MockData = {
         courseVideos: "80 Videos",
         enrolledStudent: " 60+ Students",
         rating: 5,
-        votes: "10 Votes"
+        votes: 1
     }]
 }

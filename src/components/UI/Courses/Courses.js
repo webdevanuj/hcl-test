@@ -5,12 +5,9 @@ import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import PopularCourses from "./PopularCourses";
-import { MockData } from './CoursesMockData';
 import './Courses.css'
 
 export default function courses() {
-    const Data = MockData.courses
-    .sort( (a, b) => { return parseInt(b.rating) - parseInt(a.rating)});
 
   return (
     <Container fluid>
@@ -31,10 +28,7 @@ export default function courses() {
         </Col>
       </Row>
       <Row className="mb-5">
-        {Data && Data.map((res) => {
-            return (<PopularCourses key={res.courseId} courseId={res.courseId} courseImg={res.courseImg} courseTag={res.courseTag} courseName={res.courseName} coursePrice={res.coursePrice} courseVideos={res.courseVideos} enrolledStudent={res.enrolledStudent} votes={res.votes} rating={res.rating}/>)
-        })
-        }
+        <PopularCourses />
       </Row>
     </Container>
   );
